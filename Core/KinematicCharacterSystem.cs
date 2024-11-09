@@ -35,7 +35,7 @@ namespace KinematicCharacterController {
         /// </summary>
         public static void EnsureCreation() {
             if (_instance == null) {
-                GameObject systemGameObject = new GameObject("KinematicCharacterSystem");
+                GameObject systemGameObject = new("KinematicCharacterSystem");
                 _instance = systemGameObject.AddComponent<KinematicCharacterSystem>();
 
                 systemGameObject.hideFlags = HideFlags.NotEditable;
