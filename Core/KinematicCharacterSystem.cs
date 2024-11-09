@@ -253,8 +253,7 @@ namespace KinematicCharacterController {
                     Vector3.Lerp(mover.InitialTickPosition, mover.TransientPosition, interpolationFactor),
                     Quaternion.Slerp(mover.InitialTickRotation, mover.TransientRotation, interpolationFactor));
 
-                Vector3 newPos = mover.Transform.position;
-                Quaternion newRot = mover.Transform.rotation;
+                mover.Transform.GetPositionAndRotation(out Vector3 newPos, out Quaternion newRot);
                 mover.PositionDeltaFromInterpolation = newPos - mover.LatestInterpolationPosition;
                 mover.RotationDeltaFromInterpolation = Quaternion.Inverse(mover.LatestInterpolationRotation) * newRot;
                 mover.LatestInterpolationPosition = newPos;
