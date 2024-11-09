@@ -9,13 +9,26 @@ namespace KinematicCharacterController {
     public class KinematicCharacterSystem : MonoBehaviour {
         private static KinematicCharacterSystem _instance;
 
-        public static List<KinematicCharacterMotor> CharacterMotors = new List<KinematicCharacterMotor>();
-        public static List<PhysicsMover> PhysicsMovers = new List<PhysicsMover>();
+        public static List<KinematicCharacterMotor> CharacterMotors;
+        public static List<PhysicsMover> PhysicsMovers;
 
-        private static float _lastCustomInterpolationStartTime = -1f;
-        private static float _lastCustomInterpolationDeltaTime = -1f;
+        private static float _lastCustomInterpolationStartTime;
+        private static float _lastCustomInterpolationDeltaTime;
 
         public static KCCSettings Settings;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void Init() {
+            _instance = null;
+
+            CharacterMotors = new();
+            PhysicsMovers = new();
+
+            _lastCustomInterpolationStartTime = -1f;
+            _lastCustomInterpolationDeltaTime = -1f;
+
+            Settings = default;
+        }
 
         /// <summary>
         /// Creates a KinematicCharacterSystem instance if there isn't already one
